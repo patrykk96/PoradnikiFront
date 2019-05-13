@@ -77,16 +77,11 @@ export const registerStart = () => {
       };
   
       axios
-        .post("/auth/login", JSON.stringify(authData), {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          }
-        })
+        .post("/auth/login", JSON.stringify(authData))
         .then(response => {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("email", user.email);
-          dispatch(loginSuccess(response.data.token));
+          localStorage.setItem("token", response.data.successResult.token);
+          localStorage.setItem("username", user.username);
+          dispatch(loginSuccess(response.data.successResult.token));
         })
         .catch(error => {
           dispatch(loginFailed(error.response.data));

@@ -1,18 +1,13 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
 // core components
 import AdminNavbar from "components/Navbars/Navbar.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-import * as actions from '../../store/actions/authActions'
 import { connect } from "react-redux";
-import Dashboard from '../../views/Dashboard';
-
-
 import routes from "routes.js";
-
 
 var ps;
 
@@ -69,7 +64,7 @@ class Admin extends React.Component {
       if (prop.layout === "/admin") {
         return (
           <Route path={prop.layout + prop.path} key={key} 
-          render={(props) => <ComponentName {...props} isAuthenticated={this.props.isAuthenticated}/>}  />
+          render={(props) => <ComponentName {...props} isAuthenticated={this.props.isAuthenticated} />}  />
         );
 
       } else {
@@ -124,22 +119,10 @@ class Admin extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    
-  };
-};
-
 const mapStateToProps = state => {
   return {
-    isAuthenticated: localStorage.getItem('token') !== null,
-    //loading: state.authReducer.loading,
-    //error: state.authReducer.error,
-    //response: state.authReducer.response
+    isAuthenticated: localStorage.getItem('token') !== null
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Admin);
+export default withRouter(connect(mapStateToProps)(Admin));

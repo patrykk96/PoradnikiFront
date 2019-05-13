@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // nodejs library that concatenates classes
 import classNames from "classnames";
 
@@ -11,11 +11,7 @@ import {
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
-  FormGroup,
-  InputGroupAddon,
-  Label,
   Input,
-  InputGroup,
   NavbarBrand,
   Navbar,
   NavLink,
@@ -104,7 +100,9 @@ class AdminNavbar extends React.Component {
                             name="search"
                             id="exampleSearch"
                             placeholder="Szukaj"
+                            autoComplete="off"
                           />
+
 
                    
                 {this.props.isAuthenticated ? <><UncontrolledDropdown nav>

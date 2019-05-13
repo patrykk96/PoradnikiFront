@@ -1,37 +1,13 @@
 import React from "react";
-import * as actions from '../../store/actions/authActions'
-import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
 import Stardew from "./../../assets/img/Stardew.jpg"
 
-import {
-    Button,
-    ButtonGroup,
-    Card,
-    CardHeader,
-    CardBody,
-    CardTitle,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    Label,
-    FormGroup,
-    Input,
-    Table,
-    Row,
-    Col,
-    UncontrolledTooltip,
-    CardImg
-  } from "reactstrap";
-  
 
 class Guide extends React.Component {
   render() {
     return (
         <tr>
         <td md="4">
-          <img src={Stardew}></img>
+          <img src={Stardew} alt="Guide"></img>
         </td>
         <td md="8">
           

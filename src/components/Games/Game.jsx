@@ -1,27 +1,13 @@
 import React from "react";
-import * as actions from '../../store/actions/authActions'
-import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
 import Stardew from "./../../assets/img/Stardew.jpg"
 
 import {
-    Button,
-    ButtonGroup,
     Card,
+    Col,
     CardHeader,
     CardBody,
     CardTitle,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
     Label,
-    FormGroup,
-    Input,
-    Table,
-    Row,
-    Col,
-    UncontrolledTooltip,
     CardImg
   } from "reactstrap";
   

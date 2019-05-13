@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Link, Redirect } from 'react-router-dom';
-
 import Spinner from '../Spinner';
 
 import {
@@ -15,7 +13,6 @@ import {
     Label,
     InputGroup,
     InputGroupAddon,
-    FormGroup,
     Input,
     Row,
     Col,

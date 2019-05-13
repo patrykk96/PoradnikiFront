@@ -1,11 +1,7 @@
-
 import React from "react";
-
-import { Link, Redirect } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/authActions";
-
 import Spinner from '../../components/Spinner';
 
 import {
@@ -55,14 +51,16 @@ class ChangePassword extends React.Component {
   submitChangePassword = (event) => {
 
       event.preventDefault();
-
+      let validate = false;
       if (this.state.newPassword === this.state.repeatNewPassword) {
+        validate = true;
         this.setState({validate: true})
       } else {
+        validate = false;
         this.setState({validate: false})
       }
       
-      if (this.state.validate) {
+      if (validate) {
         this.props.changePassword(this.state.username, this.state.code, this.state.newPassword);
       }
   }

@@ -4,7 +4,6 @@ import React from "react";
 
 import {
   Button,
-  ButtonGroup,
   Card,
   CardHeader,
   CardBody,
@@ -20,7 +19,6 @@ import {
   Row,
   Col,
   UncontrolledTooltip,
-  CardImg
 } from "reactstrap";
 
 class Typography extends React.Component {

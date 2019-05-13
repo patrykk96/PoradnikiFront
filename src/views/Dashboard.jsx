@@ -1,31 +1,16 @@
 import React from "react";
-// nodejs library that concatenates classes
-import classNames from "classnames";
-// react plugin used to create charts
-import Stardew from "./../assets/img/Stardew.jpg"
-
 import Game from '../components/Games/Game';
 import Guide from '../components/Guides/Guide';
 
 import {
   Button,
-  ButtonGroup,
   Card,
   CardHeader,
   CardBody,
   CardTitle,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
-  Label,
-  FormGroup,
-  Input,
   Table,
   Row,
-  Col,
-  UncontrolledTooltip,
-  CardImg
+  Col
 } from "reactstrap";
 
 // core components
@@ -40,21 +25,23 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      bigChartData: "data1",
-      showGames: false
+      showGames: false,
+      showAddGuide: false
     };
   }
-  setBgChartData = name => {
-    this.setState({
-      bigChartData: name
-    });
-  };
 
   showGames = () => {
     this.setState(prevState => ({
       showGames: !prevState.showGames
     }));
   }
+
+  showAddGuide = () => {
+    this.setState(prevState => ({
+      showAddGuide: !prevState.showAddGuide
+    }));
+  }
+
   render() {
     return (
       <>
@@ -199,10 +186,16 @@ class Dashboard extends React.Component {
                 <i className="tim-icons icon-bulb-63 text-success" />{" "}
                   Poradniki
                    {this.props.isAuthenticated ? <Button
+                      onClick={this.showAddGuide}
                       color="success"
-                     className="float-right btn-simple">Dodawanko</Button> : null} 
+                     className="float-right btn-simple">Dodaj poradnik</Button> : null} 
                   </CardTitle>
                 </CardHeader>
+                {this.state.showAddGuide ? <Col lg="12" md="12">
+                <Card><CardHeader><CardTitle tag="h3">Dodaj poradnik</CardTitle></CardHeader><CardBody>Hello</CardBody>
+                
+                </Card></Col> : <></>}
+                
                 <CardBody>
                   <div className="table-full-width table-responsive">
                     <Table className="tablesorter" responsive>

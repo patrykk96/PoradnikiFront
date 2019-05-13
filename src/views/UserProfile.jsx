@@ -1,5 +1,8 @@
 import React from "react";
 
+import { connect } from 'react-redux';
+import * as userActions from '../store/actions/userActions';
+
 // reactstrap components
 import {
   Button,
@@ -16,6 +19,11 @@ import {
 } from "reactstrap";
 
 class UserProfile extends React.Component {
+
+  componentDidMount = () => {
+    this.props.getUser(13);
+}
+
   render() {
     return (
       <>
@@ -24,58 +32,27 @@ class UserProfile extends React.Component {
             <Col md="8">
               <Card>
                 <CardHeader>
-                  <h5 className="title">Edit Profile</h5>
+                  <h5 className="title">Edytuj profil</h5>
                 </CardHeader>
                 <CardBody>
                   <Form>
                     <Row>
-                      <Col className="pr-md-1" md="5">
-                        <FormGroup>
-                          <label>Company (disabled)</label>
-                          <Input
-                            defaultValue="Creative Code Inc."
-                            disabled
-                            placeholder="Company"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="px-md-1" md="3">
-                        <FormGroup>
-                          <label>Username</label>
-                          <Input
-                            defaultValue="michael23"
-                            placeholder="Username"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="pl-md-1" md="4">
-                        <FormGroup>
-                          <label htmlFor="exampleInputEmail1">
-                            Email address
-                          </label>
-                          <Input placeholder="mike@email.com" type="email" />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
                       <Col className="pr-md-1" md="6">
                         <FormGroup>
-                          <label>First Name</label>
+                          <label>E-mail</label>
                           <Input
-                            defaultValue="Mike"
-                            placeholder="Company"
+                            defaultValue="rambotrix@gmail.com"
+                            placeholder="E-mail"
                             type="text"
                           />
                         </FormGroup>
                       </Col>
                       <Col className="pl-md-1" md="6">
                         <FormGroup>
-                          <label>Last Name</label>
+                          <label>Nazwa użytkownika</label>
                           <Input
-                            defaultValue="Andrew"
-                            placeholder="Last Name"
+                            defaultValue={this.props.user.username}
+                            placeholder="Nazwa użytkownika"
                             type="text"
                           />
                         </FormGroup>
@@ -84,52 +61,11 @@ class UserProfile extends React.Component {
                     <Row>
                       <Col md="12">
                         <FormGroup>
-                          <label>Address</label>
-                          <Input
-                            defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                            placeholder="Home Address"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="pr-md-1" md="4">
-                        <FormGroup>
-                          <label>City</label>
-                          <Input
-                            defaultValue="Mike"
-                            placeholder="City"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="px-md-1" md="4">
-                        <FormGroup>
-                          <label>Country</label>
-                          <Input
-                            defaultValue="Andrew"
-                            placeholder="Country"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="pl-md-1" md="4">
-                        <FormGroup>
-                          <label>Postal Code</label>
-                          <Input placeholder="ZIP Code" type="number" />
-                        </FormGroup>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col md="8">
-                        <FormGroup>
-                          <label>About Me</label>
+                          <label>Opis</label>
                           <Input
                             cols="80"
-                            defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
-                            placeholder="Here can be your description"
+                            defaultValue={this.props.user.description}
+                            placeholder="Opis"
                             rows="4"
                             type="textarea"
                           />
@@ -140,7 +76,7 @@ class UserProfile extends React.Component {
                 </CardBody>
                 <CardFooter>
                   <Button className="btn-fill" color="primary" type="submit">
-                    Save
+                    Edytuj profil
                   </Button>
                 </CardFooter>
               </Card>
@@ -155,30 +91,14 @@ class UserProfile extends React.Component {
                         alt="..."
                         className="avatar"
                         src={require("assets/img/emilyz.jpg")}
-                      />
-                      <h5 className="title">Mike Andrew</h5>
+                      /><br/>
+                      <h5 className="title">{this.props.user.username}</h5>
                     </a>
-                    <p className="description">Ceo/Co-Founder</p>
                   </div>
                   <div className="card-description">
-                    Do not be scared of the truth because we need to restart the
-                    human foundation in truth And I love you like Kanye loves
-                    Kanye I love Rick Owens’ bed design but the back is...
+                    {!this.props.user.description ? <>Miejsce na Twój opis...</> : this.props.user.description}
                   </div>
                 </CardBody>
-                <CardFooter>
-                  <div className="button-container">
-                    <Button className="btn-icon btn-round" color="facebook">
-                      <i className="fab fa-facebook" />
-                    </Button>
-                    <Button className="btn-icon btn-round" color="twitter">
-                      <i className="fab fa-twitter" />
-                    </Button>
-                    <Button className="btn-icon btn-round" color="google">
-                      <i className="fab fa-google-plus" />
-                    </Button>
-                  </div>
-                </CardFooter>
               </Card>
             </Col>
           </Row>
@@ -188,4 +108,21 @@ class UserProfile extends React.Component {
   }
 }
 
-export default UserProfile;
+const mapDispatchToProps = dispatch => {
+  return {
+    getUser: (userId) => dispatch(userActions.getUser(userId))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.user,
+    loading: state.gameReducer.loading,
+    error: state.gameReducer.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserProfile);

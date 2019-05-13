@@ -75,6 +75,36 @@ class Tables extends React.Component {
                         <td>Gloucester</td>
                         <td className="text-center">$98,615</td>
                       </tr>
+                      <tr>
+                        <td>Jon Porter</td>
+                        <td>Portugal</td>
+                        <td>Gloucester</td>
+                        <td className="text-center">$98,615</td>
+                      </tr>
+                      <tr>
+                        <td>Jon Porter</td>
+                        <td>Portugal</td>
+                        <td>Gloucester</td>
+                        <td className="text-center">$98,615</td>
+                      </tr>
+                      <tr>
+                        <td>Jon Porter</td>
+                        <td>Portugal</td>
+                        <td>Gloucester</td>
+                        <td className="text-center">$98,615</td>
+                      </tr>
+                      <tr>
+                        <td>Jon Porter</td>
+                        <td>Portugal</td>
+                        <td>Gloucester</td>
+                        <td className="text-center">$98,615</td>
+                      </tr>
+                      <tr>
+                        <td>Jon Porter</td>
+                        <td>Portugal</td>
+                        <td>Gloucester</td>
+                        <td className="text-center">$98,615</td>
+                      </tr>
                     </tbody>
                   </Table>
                 </CardBody>

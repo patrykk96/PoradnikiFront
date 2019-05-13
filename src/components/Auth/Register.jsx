@@ -1,33 +1,22 @@
 import React from "react";
-import * as actions from '../../store/actions/authActions'
-import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-
 import Spinner from '../Spinner';
   
 import {
     Alert,
     Button,
-    ButtonGroup,
     Card,
     CardHeader,
     CardBody,
     CardTitle,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
     InputGroup,
     InputGroupAddon,
     Label,
     FormGroup,
     Input,
-    Table,
     Row,
     Col,
     UncontrolledAlert,
-    UncontrolledTooltip,
-    CardImg
   } from "reactstrap";
   
 

@@ -1,23 +1,15 @@
-
 import React from "react";
-
-import { Link, Redirect } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import * as actions from "../../store/actions/authActions";
-
 import Spinner from '../../components/Spinner';
 
 import {
-    Button,
     Card,
     CardHeader,
     CardBody,
     CardTitle,
     Label,
-    FormGroup,
-    Input,
-    Table,
     Row,
     Col,
     Alert

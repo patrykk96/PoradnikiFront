@@ -1,35 +1,20 @@
-
 import React from "react";
-
 import { Link, Redirect } from 'react-router-dom';
-
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-
 import Spinner from '../Spinner';
 
 import {
     Button,
-    ButtonGroup,
     Card,
     CardHeader,
     CardBody,
     CardTitle,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
     Label,
     FormGroup,
-    FormText,
-    FormFeedback,
     Input,
-    Form,
-    Table,
     Row,
     Col,
     UncontrolledAlert,
-    UncontrolledTooltip,
-    CardImg
   } from "reactstrap";
 
 
@@ -51,12 +36,17 @@ class Login extends React.Component {
     this.props.resetErrors();
   };
 
+  componentWillUnmount() {
+    if(this.props.error) {
+      window.location.reload();
+    }
+  };
+
   handleInputChange = event => {
     event.preventDefault();
     this.setState({
       [event.target.name]: event.target.value
   });
-  
   };
 
   submitLogin = event => {
