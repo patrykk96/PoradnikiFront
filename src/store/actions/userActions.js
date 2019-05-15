@@ -27,7 +27,6 @@ export const getUserStart = () => {
   
       axios.get("/user/getUser/" + userId)
         .then(response => {
-            console.log(response.data.successResult.user);
           dispatch(getUserSuccess(response.data.successResult.user));
         })
         .catch(error => {

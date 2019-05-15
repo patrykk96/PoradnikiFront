@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import PerfectScrollbar from "perfect-scrollbar";
 
 // core components
-import AdminNavbar from "components/Navbars/Navbar.jsx";
+import AdminNavbar from "components/Navbar/Navbar.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 import Login from 'components/Auth/Login.jsx';
 import Register from 'components/Auth/Register.jsx';

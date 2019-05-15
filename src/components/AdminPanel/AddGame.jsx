@@ -38,7 +38,6 @@ class AddGame extends React.Component {
         name: this.state.gameName,
         description: this.state.gameDescription,
         image: formDataFile
-        //image: this.state.fileSelected
       };
       
       event.preventDefault();
@@ -63,11 +62,9 @@ class AddGame extends React.Component {
                 <CardTitle tag="h3">
                 <i className="tim-icons icon-controller text-success" />{" "}
                   Dodaj grę do bazy gier
-                  <Button
-                      onClick={this.props.showAddGame}
-                      className="float-right"
-                      color="warning">
-                     Wróć do bazy gier</Button>
+                
+                  <Button className="float-right" color="link text-warning" onClick={this.props.showAddGame}><i className="tim-icons icon-simple-remove"></i></Button>
+                     
                      
                   </CardTitle>
                 </CardHeader>

@@ -86,16 +86,8 @@ class Login extends React.Component {
                     maxLength="25"
                     minLength="4"
                     required
-                    // valid={(this.props.error !== null)}
-                    // invalid={(this.props.error !== null)}
                     onChange={event => this.handleInputChange(event)}
                     />
-                    {/* <FormText>
-                    That's a tasty looking email you've got there.
-                  </FormText>
-                  <FormFeedback valid>
-                    That's a tasty looking email you've got there.
-                  </FormFeedback> */}
             </FormGroup>
             
             <FormGroup>

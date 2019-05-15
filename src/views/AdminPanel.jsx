@@ -30,6 +30,8 @@ class AdminPanel extends React.Component {
     }));
   }
 
+  
+
   render() {
     return (
       <>
@@ -37,8 +39,16 @@ class AdminPanel extends React.Component {
           <Row>
               {this.props.loading ? <Spinner/> : 
           <Col className="ml-auto mr-auto" lg="12" md="12">
-              {this.state.showAddGame ? <AddGame addGame={this.props.addGame} showAddGame={this.showAddGame}/> : 
-              <GamesBase showAddGame={this.showAddGame} games={this.props.games}/>}
+              {this.state.showAddGame 
+              ? 
+              <AddGame 
+                  addGame={this.props.addGame} 
+                  showAddGame={this.showAddGame}/> 
+              : 
+              <GamesBase 
+                  showAddGame={this.showAddGame}
+                  editGame={this.props.editGame} 
+                  games={this.props.games}/>}
               </Col> }
           </Row>
         </div>
@@ -50,7 +60,8 @@ class AdminPanel extends React.Component {
 const mapDispatchToProps = dispatch => {
     return {
       addGame: (game) => dispatch(gameActions.addGame(game)),
-      getGames: () => dispatch(gameActions.getGames())
+      getGames: () => dispatch(gameActions.getGames()),
+      editGame: (game) => dispatch(gameActions.editGame(game))
     };
   };
   

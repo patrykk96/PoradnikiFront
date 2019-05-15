@@ -74,3 +74,118 @@ export const addGameStart = () => {
   };
 };
 
+export const editGameStart = () => {
+  return {
+    type: types.EDIT_GAME_START
+  };
+};
+
+export const editGameSuccess = response => {
+  return {
+    type: types.EDIT_GAME_SUCCESS,
+    response: response
+  };
+};
+
+export const editGameFailed = error => {
+  return {
+    type: types.EDIT_GAME_FAILED,
+    error: error
+  };
+};
+
+
+export const editGame = (game) => {
+return dispatch => {
+  dispatch(editGameStart());
+  console.log(game);
+  const formDataFile = new FormData();
+  formDataFile.append("Image" , game.image);
+
+  axios
+    .patch("/game/updateGame/" + game.id + "/" + game.name + "/" + game.description, (formDataFile))
+    .then(response => {
+        console.log(response);
+      dispatch(editGameSuccess(response.data));
+    })
+    .catch(error => {
+        console.log(error.response);
+      dispatch(editGameFailed(error.response.status));
+    });
+};
+};
+
+export const deleteGameStart = () => {
+  return {
+    type: types.DELETE_GAME_START
+  };
+};
+
+export const deleteGameSuccess = response => {
+  return {
+    type: types.DELETE_GAME_SUCCESS,
+    response: response
+  };
+};
+
+export const deleteGameFailed = error => {
+  return {
+    type: types.DELETE_GAME_FAILED,
+    error: error
+  };
+};
+
+
+export const deleteGame = (game) => {
+return dispatch => {
+  dispatch(deleteGameStart());
+ 
+  axios
+    .delete("/game/deleteGame/" + game.id)
+    .then(response => {
+        console.log(response);
+      dispatch(deleteGameSuccess(response.data));
+    })
+    .catch(error => {
+        console.log(error.response);
+      dispatch(deleteGameFailed(error.response.status));
+    });
+};
+};
+
+export const getGameStart = () => {
+  return {
+    type: types.GET_GAME_START
+  };
+};
+
+export const getGameSuccess = response => {
+  return {
+    type: types.GET_GAME_SUCCESS,
+    game: response
+  };
+};
+
+export const getGameFailed = error => {
+  return {
+    type: types.GET_GAME_FAILED,
+    error: error
+  };
+};
+
+
+export const getGame = (game) => {
+return dispatch => {
+  dispatch(getGameStart());
+  axios
+    .get("/game/getGame/{id}" + game.id)
+    .then(response => {
+        console.log(response);
+      dispatch(getGameSuccess(response.data));
+    })
+    .catch(error => {
+        console.log(error.response);
+      dispatch(getGameFailed(error.response.status));
+    });
+};
+};

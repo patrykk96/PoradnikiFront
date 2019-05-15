@@ -4,7 +4,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
 
 // core components
-import AdminNavbar from "components/Navbars/Navbar.jsx";
+import AdminNavbar from "components/Navbar/Navbar.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 import { connect } from "react-redux";
 import routes from "routes.js";
