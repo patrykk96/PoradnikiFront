@@ -16,4 +16,9 @@ export default () => {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '+ localStorage.getItem('token'),
       };
+
+      axios.defaults.headers.delete = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ localStorage.getItem('token'),
+      };
 };

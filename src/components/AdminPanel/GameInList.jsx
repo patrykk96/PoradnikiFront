@@ -51,14 +51,15 @@ import {
             <td width="25%"><small>{this.props.gameDescription}</small></td></>}
             <td width="20%" className="text-center">
                   <Rating 
-                  placeholderRating={4}
+                  placeholderRating={this.props.gameRating}
                   emptySymbol="tim-icons icon-shape-star rating" 
                   fullSymbol="tim-icons icon-shape-star text-success rating" 
                   placeholderSymbol="tim-icons icon-shape-star text-success rating"
                   readonly/>
             </td>
-            <td width="15%" className="text-center">23</td>
+            <td width="15%" className="text-center">{this.props.guidesCount}</td>
             <td width="5%" className="text-right"><Button onClick={() => this.props.enableEditGame(this.props.id)} color="link"><i className="tim-icons icon-pencil"/></Button></td>
+            <td width="5%" className="text-right"><Button onClick={() => this.props.submitDeleteGame(this.props.id)} color="link"><i className="tim-icons icon-trash-simple"/></Button></td>
         </tr>
     );
   }

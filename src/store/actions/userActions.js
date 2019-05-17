@@ -24,7 +24,6 @@ export const getUserStart = () => {
   export const getUser = (userId) => {
     return dispatch => {
       dispatch(getUserStart());
-  
       axios.get("/user/getUser/" + userId)
         .then(response => {
           dispatch(getUserSuccess(response.data.successResult.user));

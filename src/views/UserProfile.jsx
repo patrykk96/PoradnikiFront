@@ -21,7 +21,7 @@ import {
 class UserProfile extends React.Component {
 
   componentDidMount = () => {
-    this.props.getUser(13);
+    this.props.getUser(localStorage.getItem("id"));
 }
 
   render() {
@@ -41,7 +41,7 @@ class UserProfile extends React.Component {
                         <FormGroup>
                           <label>E-mail</label>
                           <Input
-                            defaultValue="rambotrix@gmail.com"
+                            defaultValue={this.props.user.email}
                             placeholder="E-mail"
                             type="text"
                           />

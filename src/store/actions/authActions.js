@@ -75,12 +75,14 @@ export const registerStart = () => {
         username: user.username,
         password: user.password
       };
-  
+    
       axios
         .post("/auth/login", JSON.stringify(authData))
         .then(response => {
+          console.log(response);
           localStorage.setItem("token", response.data.successResult.token);
           localStorage.setItem("username", user.username);
+          localStorage.setItem("id", response.data.successResult.id)
           dispatch(loginSuccess(response.data.successResult.token));
         })
         .catch(error => {

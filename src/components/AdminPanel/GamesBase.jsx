@@ -65,6 +65,11 @@ class GamesBase extends React.Component {
     this.props.editGame(game);
   }
 
+  submitDeleteGame = (id) => {
+    console.log(id);
+    this.props.deleteGame(id);
+  }
+
   render() {
     let games = null;
 
@@ -77,8 +82,11 @@ class GamesBase extends React.Component {
               gameName={game.name} 
               gameDescription={game.description} 
               gameImage={game.image}
+              gameRating={game.rating}
+              guidesCount={game.guidesCount}
               enableEditGame={this.enableEditGame}
               enabledEditGame={this.state.enabledEditGame}
+              submitDeleteGame={this.submitDeleteGame}
               selectedId={this.state.selectedId}
               handleInputChange={this.handleInputChange}
               fileSelected={this.fileSelected} />

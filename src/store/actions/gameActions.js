@@ -136,12 +136,12 @@ export const deleteGameFailed = error => {
 };
 
 
-export const deleteGame = (game) => {
+export const deleteGame = (id) => {
 return dispatch => {
   dispatch(deleteGameStart());
  
   axios
-    .delete("/game/deleteGame/" + game.id)
+    .delete("/game/deleteGame/" + id)
     .then(response => {
         console.log(response);
       dispatch(deleteGameSuccess(response.data));

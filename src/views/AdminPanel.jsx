@@ -48,7 +48,8 @@ class AdminPanel extends React.Component {
               <GamesBase 
                   showAddGame={this.showAddGame}
                   editGame={this.props.editGame} 
-                  games={this.props.games}/>}
+                  games={this.props.games}
+                  deleteGame={this.props.deleteGame}/>}
               </Col> }
           </Row>
         </div>
@@ -61,7 +62,8 @@ const mapDispatchToProps = dispatch => {
     return {
       addGame: (game) => dispatch(gameActions.addGame(game)),
       getGames: () => dispatch(gameActions.getGames()),
-      editGame: (game) => dispatch(gameActions.editGame(game))
+      editGame: (game) => dispatch(gameActions.editGame(game)),
+      deleteGame: (id) => dispatch(gameActions.deleteGame(id))
     };
   };
   
