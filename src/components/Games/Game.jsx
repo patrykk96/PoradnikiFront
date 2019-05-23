@@ -21,21 +21,13 @@ class Game extends React.Component {
           <h5 className="card-category">Przeglądaj gry</h5>
           <CardTitle tag="h3">
             <i className="tim-icons icon-controller text-info" />{" "}
-            Stardew Valley
+            {this.props.gameName}
           </CardTitle>
-          <CardImg src={Stardew}></CardImg>
+          <CardImg src={this.props.gameImage}></CardImg>
         </CardHeader>
         <CardBody>
-          <Label>Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
-                  Stardew Valley to fajna gra i mamy do niej poradniki. 
+          <Label>
+            {this.props.gameDescription}
           </Label>
         </CardBody>
       </Card>

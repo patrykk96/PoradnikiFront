@@ -1,9 +1,12 @@
 import React from "react";
+import { connect } from 'react-redux';
 import Game from '../components/Games/Game';
-import Guide from '../components/Guides/Guide';
+import * as gameActions from '../store/actions/gameActions';
+import * as guideActions from '../store/actions/guideActions';
+import DashboardGames from '../components/Dashboard/DashboardGames';
+import DashboardGuides from '../components/Dashboard/DashboardGuides';
 
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
@@ -22,6 +25,11 @@ class Dashboard extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getGames();
+    this.props.getGuides(0, 0);
+  };
+
   showGames = () => {
     this.setState(prevState => ({
       showGames: !prevState.showGames
@@ -34,11 +42,10 @@ class Dashboard extends React.Component {
       <>
         <div className="content">
 
-
           <Row>
-            <Game/>
-            <Game/>
-            <Game/>
+            <DashboardGames
+              games = {this.props.games}
+            />
           </Row>
 
             {this.state.showGames ? <Row>
@@ -77,12 +84,9 @@ class Dashboard extends React.Component {
                   <div className="table-full-width table-responsive">
                     <Table className="tablesorter" responsive>
                       <tbody>
-                       <Guide/>
-                       <Guide/>
-                       <Guide/>
-                       <Guide/>
-                       <Guide/>
-                       <Guide/>
+                       <DashboardGuides
+                        guides={this.props.guides}
+                       />
                       </tbody>
                     </Table>
                   </div>
@@ -97,4 +101,23 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapDispatchToProps = dispatch => {
+  return {
+    getGames: (userId) => dispatch(gameActions.getGames(userId)),
+    getGuides: (userId, gameId) => dispatch(guideActions.getGuides(userId, gameId))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    games: state.gameReducer.games,
+    guides: state.guideReducer.guides,
+    loading: state.gameReducer.loading,
+    error: state.gameReducer.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);

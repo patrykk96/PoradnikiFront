@@ -22,6 +22,7 @@ import "assets/css/nucleo-icons.css";
 import authReducer from "./store/reducers/authReducer";
 import gameReducer from "./store/reducers/gameReducer";
 import userReducer from "./store/reducers/userReducer";
+import guideReducer from "./store/reducers/guideReducer";
 
 initializeApi();
 const hist = createBrowserHistory();
@@ -31,7 +32,8 @@ const hist = createBrowserHistory();
 const rootReducer = combineReducers({
   authReducer: authReducer,
   gameReducer: gameReducer,
-  userReducer: userReducer
+  userReducer: userReducer,
+  guideReducer: guideReducer
 });
 
 
