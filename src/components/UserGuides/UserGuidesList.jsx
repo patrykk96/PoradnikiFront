@@ -8,24 +8,31 @@ class UserGuidesList extends React.Component {
 
   
   render() {
+
     let guides = null;
 
     if (this.props.guides) {
       guides = this.props.guides.map(guide => {
         return (
           <Guide
-              id={guide.id} 
+              key={guide.id}
+              id={guide.id}
               guideName={guide.name}
               gameName={guide.gameName}
               username={guide.username}
               guideContent={guide.content} 
               gameImage={guide.gameImage}
               guidesRating={guide.rating}
+              showEditOptions={true}
               fileSelected={this.fileSelected} 
-              unableEditGuide={this.unableEditGuide}
-              enableEditGame={this.props.enableEditGame}
+              unableEditGuide={this.props.unableEditGuide}
+              enableEditGuide={this.props.enableEditGuide}
               submitEditGuide={this.props.submitEditGuide}
-                          />
+              submitDeleteGuide={this.props.submitDeleteGuide}
+              enabledEditGuide={this.props.enabledEditGuide}
+              handleInputChange={this.props.handleInputChange}
+              selectedId={this.props.selectedId}
+            />
         );
       }
       );

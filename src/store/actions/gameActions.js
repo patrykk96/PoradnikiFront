@@ -178,7 +178,7 @@ export const getGame = (game) => {
 return dispatch => {
   dispatch(getGameStart());
   axios
-    .get("/game/getGame/{id}" + game.id)
+    .get("/game/getGame/" + game.id)
     .then(response => {
         console.log(response);
       dispatch(getGameSuccess(response.data));
@@ -188,4 +188,41 @@ return dispatch => {
       dispatch(getGameFailed(error.response.status));
     });
 };
+};
+
+export const addGameReviewStart = () => {
+  return {
+    type: types.ADD_GAMEREVIEW_START
+  };
+};
+
+export const addGameReviewSuccess = response => {
+  return {
+    type: types.ADD_GAMEREVIEW_SUCCESS,
+    response: response
+  };
+};
+
+export const addGameReviewFailed = error => {
+  return {
+    type: types.ADD_GAMEREVIEW_FAILED,
+    error: error
+  };
+};
+
+export const addGameReview = (review) => {
+  return dispatch => {
+    dispatch(addGameReviewStart());
+    console.log(review);
+    axios
+      .post("/game/addReview", review)
+      .then(response => {
+          console.log(response);
+        dispatch(addGameReviewSuccess(response.status));
+      })
+      .catch(error => {
+          console.log(error.response);
+        dispatch(addGameReviewFailed(error.response.status));
+      });
+  };
 };

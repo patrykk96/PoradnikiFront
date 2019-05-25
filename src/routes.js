@@ -14,8 +14,7 @@ var routes = [
   }
 ];
 
-if (localStorage.getItem('token')) {
-   routes = [
+export var newRoutes = [
     {
       path: "/dashboard",
       name: "Strona główna",
@@ -44,7 +43,8 @@ if (localStorage.getItem('token')) {
       component: UserProfile,
       layout: "/admin"
     }
-  ];
-}
+];
+
 
 export default routes;
+

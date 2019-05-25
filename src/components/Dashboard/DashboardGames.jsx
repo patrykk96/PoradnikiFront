@@ -16,10 +16,14 @@ class DashboardGames extends React.Component {
               gameDescription={game.description} 
               gameImage={game.image}
               gameRating={game.rating}
+              userRating={game.userRating}
               guidesCount={game.guidesCount}
+              addGameReview={this.props.addGameReview}
+              showGameGuides={this.props.showGameGuides}
+              isAuthenticated={this.props.isAuthenticated}
              // enableEditGame={this.enableEditGame}
              // enabledEditGame={this.state.enabledEditGame}
-              submitDeleteGame={this.submitDeleteGame}
+             //submitDeleteGame={this.submitDeleteGame}
              // selectedId={this.state.selectedId}
               handleInputChange={this.handleInputChange}
               fileSelected={this.fileSelected} />

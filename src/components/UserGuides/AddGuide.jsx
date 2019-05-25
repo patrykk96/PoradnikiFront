@@ -9,19 +9,37 @@ import {
   Row,
   Col,
   FormGroup,
-  Input
+  Input,
 } from "reactstrap";
+
+import Select from 'react-select';
 
 class AddGuide extends React.Component {
   constructor(props) {
     super(props);
+    this.toggle = this.toggle.bind(this);
     this.state = {
-        guide: {
-            guideName: "",
-            guideDescription: "",
-            fileSelected: null,
-        },
+       guideName: null,
+       guideContent: null,
+       dropdownOpen: false,
+       selectedOption: null
     };
+  }
+
+  componentDidMount() {
+    this.props.getGames();
+    
+  };
+
+  handleGameChange = selectedOption => {
+    this.setState({selectedOption: selectedOption});
+    console.log(selectedOption)
+  }
+
+  toggle() {
+    this.setState(prevState => ({
+      dropdownOpen: !prevState.dropdownOpen
+    }));
   }
 
   fileSelected = (event) => {
@@ -30,16 +48,20 @@ class AddGuide extends React.Component {
   }
 
   submitAddGuide = (event) => {
-
-    const guide = {
+    event.preventDefault();
+    if (this.state.selectedOption)
+    {
+      const guide = {
         author: localStorage.getItem("id"),
         name: this.state.guideName,
-        description: this.state.guideDescription,
-        game: 2
+        content: this.state.guideContent,
+        game: this.state.selectedOption.value
       };
-      
-      event.preventDefault();
+
       this.props.addGuide(guide);
+      this.setState({selectedOption: null})
+    }
+
     };
   
   handleInputChange = event => {
@@ -50,6 +72,9 @@ class AddGuide extends React.Component {
   };
 
   render() {
+    let games = this.props.games.map(game => {
+      return {value: game.id, label: game.name}
+    })
     return (
       <>
           
@@ -87,23 +112,27 @@ class AddGuide extends React.Component {
                         </FormGroup>
 
                         <FormGroup>
-                          <label>Opis poradnika</label>
+                          <label>Treść poradnika</label>
                           <Input
                             cols="80"
                             defaultValue=""
-                            placeholder="Opis poradnika"
+                            placeholder="Treść poradnika"
                             rows="4"
                             type="textarea"
-                            name="guideDescription"
+                            name="guideContent"
                             maxLength="255"
                             required
                             onChange={event => this.handleInputChange(event)}
                           />
                         </FormGroup>
-
-                    <label>Obraz poradnika</label>
-                    <Input type="file" name="file" onChange={this.fileSelected} />
-                        <br/><br/>
+                      
+                      <Select
+                        placeholder="Wybierz grę"
+                        value={this.state.selectedOption}
+                        onChange={this.handleGameChange}
+                        options={games}
+                        isMulti={false}
+                        isSerchable={true} />
                     <Button
                       onClick={this.submitAddGame}
                       color="primary">

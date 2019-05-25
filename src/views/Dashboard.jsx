@@ -21,7 +21,8 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       showGames: false,
-      showAddGuide: false
+      showAddGuide: false,
+      showGameGuides: false
     };
   }
 
@@ -36,15 +37,28 @@ class Dashboard extends React.Component {
     }));
   }
 
+  showGameGuides = (gameId) => {
+    this.setState(prevState => ({
+      showGameGuides: !prevState.showGameGuides
+    }));
+    console.log(gameId);
+    this.props.getGuides(0, gameId);
+  }
 
   render() {
+    console.log(this.props.isAuthenticated)
     return (
       <>
         <div className="content">
 
           <Row>
             <DashboardGames
-              games = {this.props.games}
+              games={this.props.games}
+              addGameReview={this.props.addGameReview}
+              getGameReview={this.props.getGameReview}
+              review={this.props.review}
+              showGameGuides={this.showGameGuides}
+              isAuthenticated={this.props.isAuthenticated}
             />
           </Row>
 
@@ -104,7 +118,8 @@ class Dashboard extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     getGames: (userId) => dispatch(gameActions.getGames(userId)),
-    getGuides: (userId, gameId) => dispatch(guideActions.getGuides(userId, gameId))
+    getGuides: (userId, gameId) => dispatch(guideActions.getGuides(userId, gameId)),
+    addGameReview: (review) => dispatch(gameActions.addGameReview(review))
   };
 };
 

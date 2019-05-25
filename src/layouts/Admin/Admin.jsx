@@ -8,6 +8,7 @@ import AdminNavbar from "components/Navbar/Navbar.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 import { connect } from "react-redux";
 import routes from "routes.js";
+import {newRoutes}  from "routes.js";
 
 var ps;
 
@@ -59,7 +60,6 @@ class Admin extends React.Component {
   
   getRoutes = routes => {
     return routes.map((prop, key) => {
-      
       const ComponentName = prop.component;
       if (prop.layout === "/admin") {
         return (
@@ -88,15 +88,24 @@ class Admin extends React.Component {
     return "Brand";
   };
   render() {
-    return (
-      <>
-        <div className="wrapper">
-          <Sidebar
+    let sidebar = <Sidebar
+                    {...this.props}
+                    routes={routes}
+                    bgColor={this.state.backgroundColor}
+                    toggleSidebar={this.toggleSidebar}
+                  />;
+    if (this.props.isAuthenticated){
+      sidebar = <Sidebar
             {...this.props}
-            routes={routes}
+            routes={newRoutes}
             bgColor={this.state.backgroundColor}
             toggleSidebar={this.toggleSidebar}
           />
+    }
+    return (
+      <>
+        <div className="wrapper">
+          {sidebar}
           <div
             className="main-panel"
             ref="mainPanel"

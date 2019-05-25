@@ -10,6 +10,7 @@ class DashboardGuides extends React.Component {
       guides = this.props.guides.map(guide => {
         return (
           <Guide
+          key={guide.id}
           id={guide.id} 
           guideName={guide.name}
           gameName={guide.gameName}

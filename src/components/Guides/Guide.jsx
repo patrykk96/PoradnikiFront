@@ -9,23 +9,19 @@ import {
 class Guide extends React.Component {
   render() 
   {
-
-    console.log(this.props.enableEditGuide)
     return (
         <tr>
-          {this.props.id === this.props.selectedId && this.props.enabledEditGame ? 
+          {this.props.id === this.props.selectedId && this.props.enabledEditGuide ? 
         <>
         <td width="15%"><img src={this.props.gameImage} width="70px" alt="Game"></img>
        <br/><br/>
-        <label>Edytuj obraz gry</label>
-        <Input type="file" name="file" onChange={this.props.fileSelected} />
         </td>
             <td width="15%" className="tablesorter">
             {" "}<FormGroup>
-                          <label>Edytuj tytuł gry</label>
+                          <label>Edytuj tytuł poradnika</label>
                           <Input
-                            defaultValue={this.props.gameName}
-                            placeholder="Tytuł gry"
+                            defaultValue={this.props.guideName}
+                            placeholder="Tytuł poradnika"
                             type="text"
                             name="name"
                             onChange={event => this.props.handleInputChange(event)}
@@ -36,9 +32,9 @@ class Guide extends React.Component {
                           <label>Edytuj opis</label>
                           <Input
                             cols="100"
-                            defaultValue={this.props.gameDescription}
-                            placeholder="Opis gry"
-                            name="description"
+                            defaultValue={this.props.guideContent}
+                            placeholder="Treść poradnika"
+                            name="content"
                             onChange={event => this.props.handleInputChange(event)}
                             rows="8"
                             type="textarea"
@@ -68,14 +64,17 @@ class Guide extends React.Component {
                   <small>Liczba głosów: 10</small>
                 </div>
             <p className="text-muted">
-            {this.props.content}
+            {this.props.guideContent}
             </p>
             <small>Komentarze: 8</small> 
           </td>
-         
+          {this.props.showEditOptions ? 
+          <>
           <td width="5%" className="text-right"><Button onClick={() => this.props.enableEditGuide(this.props.id)} color="link"><i className="tim-icons icon-pencil"/></Button></td>
           <td width="5%" className="text-right"><Button onClick={() => this.props.submitDeleteGuide(this.props.id)} color="link"><i className="tim-icons icon-trash-simple"/></Button></td>
-        
+            </> : null
+          }
+          
           </>}
       </tr>
     );

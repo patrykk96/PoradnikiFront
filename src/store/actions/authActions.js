@@ -84,6 +84,7 @@ export const registerStart = () => {
           localStorage.setItem("username", user.username);
           localStorage.setItem("id", response.data.successResult.id)
           dispatch(loginSuccess(response.data.successResult.token));
+          //window.location.reload();
         })
         .catch(error => {
           dispatch(loginFailed(error.response.data));

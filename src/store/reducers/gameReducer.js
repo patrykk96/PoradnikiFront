@@ -106,6 +106,25 @@ const getGameFailed = ( state, action ) => {
         loading: false});
     }
 
+//==========================================
+
+const addGameReviewStart = ( state ) => {
+        return updateObject( state, { 
+        loading: true});
+}
+
+const addGameReviewSuccess = ( state, action ) => {
+       return updateObject( state, {
+        error: null, loading: false,
+        response: action.response});
+}
+
+const addGameReviewFailed = ( state, action ) => {
+    return updateObject( state, {
+        error: action.error,
+        loading: false});
+}
+
 const gameReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_GAME_START: return addGameStart(state);
@@ -127,6 +146,10 @@ const gameReducer = (state = initialState, action) => {
         case actionTypes.GET_GAME_START: return getGameStart(state);
         case actionTypes.GET_GAME_SUCCESS: return getGameSuccess(state, action);
         case actionTypes.GET_GAME_FAILED: return getGameFailed(state, action);
+
+        case actionTypes.ADD_GAMEREVIEW_START: return addGameReviewStart(state);
+        case actionTypes.ADD_GAMEREVIEW_SUCCESS: return addGameReviewSuccess(state, action);
+        case actionTypes.ADD_GAMEREVIEW_FAILED: return addGameReviewFailed(state, action);
 
         default: 
             return state;
