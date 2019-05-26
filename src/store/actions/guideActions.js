@@ -187,3 +187,39 @@ return dispatch => {
     });
 };
 };
+
+export const addGuideReviewStart = () => {
+  return {
+    type: types.ADD_GUIDEREVIEW_START
+  };
+};
+
+export const addGuideReviewSuccess = response => {
+  return {
+    type: types.ADD_GUIDEREVIEW_SUCCESS,
+    response: response
+  };
+};
+
+export const addGuideReviewFailed = error => {
+  return {
+    type: types.ADD_GUIDEREVIEW_FAILED,
+    error: error
+  };
+};
+
+export const addGuideReview = (review) => {
+  return dispatch => {
+    dispatch(addGuideReviewStart());
+    axios
+      .post("/guide/addReview", review)
+      .then(response => {
+          console.log(response);
+        dispatch(addGuideReviewSuccess(response.status));
+      })
+      .catch(error => {
+          console.log(error.response);
+        dispatch(addGuideReviewFailed(error.response.status));
+      });
+  };
+};

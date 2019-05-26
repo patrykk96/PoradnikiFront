@@ -1,14 +1,54 @@
 import React from "react";
+import Rating from 'react-rating';
 
 import {
   Button,
   Input,
-  FormGroup
+  FormGroup,
+  Label
 } from "reactstrap";
 
 class Guide extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: null
+    }
+}
+
+setRating = (value)=>{
+  const review = {
+    rating: value,
+    userId: localStorage.getItem("id"),
+    entityId: this.props.id
+  }
+
+  this.props.addGuideReview(review);
+  this.setState({rating: value});
+}
   render() 
   {
+    let rating = null;
+    if(this.props.isAuthenticated) {
+      rating = <Rating 
+                    placeholderRating={this.props.userRating}
+                    emptySymbol="tim-icons icon-shape-star rating" 
+                    fullSymbol="tim-icons icon-shape-star text-success rating" 
+                    placeholderSymbol="tim-icons icon-shape-star text-success rating"
+                    readonly={false}
+                    onClick={this.setRating}/>;
+  
+      if (this.state.rating) {
+        rating = <Rating 
+        placeholderRating={this.state.rating}
+        emptySymbol="tim-icons icon-shape-star rating" 
+        fullSymbol="tim-icons icon-shape-star text-success rating" 
+        placeholderSymbol="tim-icons icon-shape-star text-success rating"
+        readonly={false}
+        onClick={this.setRating}/>
+  
+      }
+    }
     return (
         <tr>
           {this.props.id === this.props.selectedId && this.props.enabledEditGuide ? 
@@ -56,12 +96,24 @@ class Guide extends React.Component {
             <small className="float-right">Wyświetlenia: 168</small>
               </p>
               <div>
-                  <p className="tim-icons icon-shape-star text-success"></p>{" "}
-                  <p className="tim-icons icon-shape-star text-success"></p>{" "}
-                  <p className="tim-icons icon-shape-star text-danger"></p>{" "}
-                  <p className="tim-icons icon-shape-star text-danger"></p>{" "}
-                  <p className="tim-icons icon-shape-star text-danger"></p>{" "}
-                  <small>Liczba głosów: 10</small>
+              <Label>
+                Ocena użytkowników:  
+                <br></br>
+                <Rating 
+                      placeholderRating={this.props.guideRating}
+                      emptySymbol="tim-icons icon-shape-star rating" 
+                      fullSymbol="tim-icons icon-shape-star text-success rating" 
+                      placeholderSymbol="tim-icons icon-shape-star text-success rating"
+                      readonly/>
+              </Label>
+              <small>Liczba głosów: {this.props.reviewCount}</small>
+                <br></br>
+                {this.props.isAuthenticated ? <Label>
+                  Twoja ocena:  
+                  <br></br>
+                  {rating}
+                </Label>: null}
+                  
                 </div>
             <p className="text-muted">
             {this.props.guideContent}

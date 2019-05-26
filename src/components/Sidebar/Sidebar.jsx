@@ -11,17 +11,65 @@ import PerfectScrollbar from "perfect-scrollbar";
 import { Nav } from "reactstrap";
 
 var ps;
-
+var jwtDecode = require('jwt-decode');
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.activeRoute.bind(this);
+    this.state={
+      routes: [
+        {
+          path: "/dashboard",
+          name: "Strona główna",
+          icon: "tim-icons icon-chart-pie-36",
+          layout: "/admin"
+        }
+      ]
+    }
   }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
   componentDidMount() {
+    if(this.props.isAuthenticated) {
+      let token = localStorage.getItem("token");
+      let decodedToken = jwtDecode(token);
+      let role = decodedToken.role;
+
+      let routes =  [
+        {
+          path: "/dashboard",
+          name: "Strona główna",
+          icon: "tim-icons icon-chart-pie-36",
+          layout: "/admin"
+        },
+        {
+          path: "/user-guides",
+          name: "Twoje poradniki",
+          icon: "tim-icons icon-single-02",
+          layout: "/admin"
+        },
+        {
+          path: "/user-profile",
+          name: "Profil użytkownika",
+          icon: "tim-icons icon-badge",
+          layout: "/admin"
+        }
+      ]
+      if(role === "1"){
+        routes.push({
+          path: "/admin-panel",
+          name: "Panel administratora",
+          icon: "tim-icons icon-badge",
+          layout: "/admin"
+        },);
+      }
+      this.setState({
+        routes: routes
+      })
+    }
+
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.refs.sidebar, {
         suppressScrollX: true,
@@ -34,16 +82,18 @@ class Sidebar extends React.Component {
       ps.destroy();
     }
   }
+  
   linkOnClick = () => {
     document.documentElement.classList.remove("nav-open");
   };
+
   render() {
-    const { bgColor, routes } = this.props;
+    const { bgColor } = this.props;
     return (
       <div className="sidebar" data={bgColor}>
         <div className="sidebar-wrapper" ref="sidebar">
           <Nav>
-            {routes.map((prop, key) => {
+            {this.state.routes.map((prop, key) => {
               if (prop.redirect) return null;
               return (
                 <li
@@ -73,8 +123,7 @@ class Sidebar extends React.Component {
 }
 
 Sidebar.defaultProps = {
-  bgColor: "primary",
-  routes: [{}]
+  bgColor: "primary"
 };
 
 Sidebar.propTypes = {

@@ -106,6 +106,25 @@ const getGuideFailed = ( state, action ) => {
         loading: false});
     }
 
+//==========================================
+
+const addGuideReviewStart = ( state ) => {
+        return updateObject( state, { 
+        loading: true});
+}
+
+const addGuideReviewSuccess = ( state, action ) => {
+       return updateObject( state, {
+        error: null, loading: false,
+        response: action.response});
+}
+
+const addGuideReviewFailed = ( state, action ) => {
+    return updateObject( state, {
+        error: action.error,
+        loading: false});
+}
+
 const guideReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_GUIDE_START: return addGuideStart(state);
@@ -127,6 +146,10 @@ const guideReducer = (state = initialState, action) => {
         case actionTypes.GET_GUIDE_START: return getGuideStart(state);
         case actionTypes.GET_GUIDE_SUCCESS: return getGuideSuccess(state, action);
         case actionTypes.GET_GUIDE_FAILED: return getGuideFailed(state, action);
+
+        case actionTypes.ADD_GUIDEREVIEW_START: return addGuideReviewStart(state);
+        case actionTypes.ADD_GUIDEREVIEW_SUCCESS: return addGuideReviewSuccess(state, action);
+        case actionTypes.ADD_GUIDEREVIEW_FAILED: return addGuideReviewFailed(state, action);
 
         default: 
             return state;

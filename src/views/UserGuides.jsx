@@ -83,6 +83,7 @@ class UserGuides extends React.Component {
   
 
   render() {
+  
     return (
       <>
         <div className="content">
@@ -117,7 +118,9 @@ class UserGuides extends React.Component {
                           submitEditGuide={this.submitEditGuide}
                           submitDeleteGuide={this.submitDeleteGuide}
                           handleInputChange={this.handleInputChange}
+                          addGuideReview={this.props.addGuideReview}
                           selectedId={this.state.selectedId}
+                          isAuthenticated={this.props.isAuthenticated}
                        />
                       </tbody>
                     </Table>
@@ -140,7 +143,8 @@ const mapDispatchToProps = dispatch => {
       editGuide: (guide) => dispatch(guideActions.editGuide(guide)),
       getGuides: (userId, gameId) => dispatch(guideActions.getGuides(userId, gameId)),
       getGames: () => dispatch(gameActions.getGames()),
-      deleteGuide: (guideId) => dispatch(guideActions.deleteGuide(guideId))
+      deleteGuide: (guideId) => dispatch(guideActions.deleteGuide(guideId)),
+      addGuideReview: (review) => dispatch(guideActions.addGuideReview(review))
     };
   };
   

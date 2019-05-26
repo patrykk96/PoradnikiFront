@@ -22,7 +22,9 @@ class UserGuidesList extends React.Component {
               username={guide.username}
               guideContent={guide.content} 
               gameImage={guide.gameImage}
-              guidesRating={guide.rating}
+              guideRating={guide.rating}
+              userRating={guide.userRating}
+              reviewCount={guide.reviewCount}
               showEditOptions={true}
               fileSelected={this.fileSelected} 
               unableEditGuide={this.props.unableEditGuide}
@@ -30,7 +32,9 @@ class UserGuidesList extends React.Component {
               submitEditGuide={this.props.submitEditGuide}
               submitDeleteGuide={this.props.submitDeleteGuide}
               enabledEditGuide={this.props.enabledEditGuide}
+              addGuideReview={this.props.addGuideReview}
               handleInputChange={this.props.handleInputChange}
+              isAuthenticated={this.props.isAuthenticated}
               selectedId={this.props.selectedId}
             />
         );

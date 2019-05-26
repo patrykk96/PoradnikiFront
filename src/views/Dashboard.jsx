@@ -100,6 +100,7 @@ class Dashboard extends React.Component {
                       <tbody>
                        <DashboardGuides
                         guides={this.props.guides}
+                        isAuthenticated={this.props.isAuthenticated}
                        />
                       </tbody>
                     </Table>

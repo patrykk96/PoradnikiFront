@@ -3,7 +3,7 @@ import Guide from "../../components/Guides/Guide";
 
 class DashboardGuides extends React.Component {
   render() {
-
+    
     let guides = null;
 
     if (this.props.guides) {
@@ -17,8 +17,12 @@ class DashboardGuides extends React.Component {
           username={guide.username}
           guideContent={guide.content} 
           gameImage={guide.gameImage}
-          guidesRating={guide.rating}
-          fileSelected={this.fileSelected}/>
+          guideRating={guide.rating}
+          userRating={guide.userRating}
+          reviewCount={guide.reviewCount}
+          fileSelected={this.fileSelected}
+          isAuthenticated={this.props.isAuthenticated}/>
+          
         );
       }
       );

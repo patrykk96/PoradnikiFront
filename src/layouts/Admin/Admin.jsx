@@ -8,7 +8,11 @@ import AdminNavbar from "components/Navbar/Navbar.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 import { connect } from "react-redux";
 import routes from "routes.js";
-import {newRoutes}  from "routes.js";
+
+import Dashboard from "../../views/Dashboard.jsx";
+import UserGuides from "../../views/UserGuides.jsx";
+import AdminPanel from "../../views/AdminPanel.jsx";
+import UserProfile from "../../views/UserProfile.jsx";
 
 var ps;
 
@@ -58,6 +62,11 @@ class Admin extends React.Component {
     this.setState({ sidebarOpened: !this.state.sidebarOpened });
   };
   
+
+  handleBgClick = color => {
+    this.setState({ backgroundColor: color });
+  };
+
   getRoutes = routes => {
     return routes.map((prop, key) => {
       const ComponentName = prop.component;
@@ -66,15 +75,12 @@ class Admin extends React.Component {
           <Route path={prop.layout + prop.path} key={key} 
           render={(props) => <ComponentName {...props} isAuthenticated={this.props.isAuthenticated} />}  />
         );
-
       } else {
         return null;
       }
     });
   };
-  handleBgClick = color => {
-    this.setState({ backgroundColor: color });
-  };
+
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (
@@ -88,24 +94,16 @@ class Admin extends React.Component {
     return "Brand";
   };
   render() {
-    let sidebar = <Sidebar
-                    {...this.props}
-                    routes={routes}
-                    bgColor={this.state.backgroundColor}
-                    toggleSidebar={this.toggleSidebar}
-                  />;
-    if (this.props.isAuthenticated){
-      sidebar = <Sidebar
-            {...this.props}
-            routes={newRoutes}
-            bgColor={this.state.backgroundColor}
-            toggleSidebar={this.toggleSidebar}
-          />
-    }
+  
     return (
       <>
         <div className="wrapper">
-          {sidebar}
+        <Sidebar
+            {...this.props}
+            routes={routes}
+            bgColor={this.state.backgroundColor}
+            toggleSidebar={this.toggleSidebar}
+          />
           <div
             className="main-panel"
             ref="mainPanel"
@@ -119,7 +117,8 @@ class Admin extends React.Component {
               logout={this.props.logout}
               isAuthenticated={this.props.isAuthenticated}
             />
-            <Switch>{this.getRoutes(routes)}</Switch>
+
+              <Switch>{this.getRoutes(routes)}</Switch>
           </div>
         </div>
      

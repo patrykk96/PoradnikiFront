@@ -32,7 +32,11 @@ class Game extends React.Component {
   }
 
   render() {
-    let rating = <Rating 
+    console.log("Spr" + this.props.isAuthenticated)
+    let rating = null;
+
+    if(this.props.isAuthenticated) {
+    rating = <Rating 
                   placeholderRating={this.props.userRating}
                   emptySymbol="tim-icons icon-shape-star rating" 
                   fullSymbol="tim-icons icon-shape-star text-success rating" 
@@ -40,7 +44,7 @@ class Game extends React.Component {
                   readonly={false}
                   onClick={this.setRating}/>;
 
-    if (this.state.rating){
+    if (this.state.rating) {
       rating = <Rating 
       placeholderRating={this.state.rating}
       emptySymbol="tim-icons icon-shape-star rating" 
@@ -50,6 +54,7 @@ class Game extends React.Component {
       onClick={this.setRating}/>
 
     }
+  }
     return (
       <Col lg="4">
       <Card>
