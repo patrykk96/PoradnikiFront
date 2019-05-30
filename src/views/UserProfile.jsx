@@ -19,10 +19,37 @@ import {
 } from "reactstrap";
 
 class UserProfile extends React.Component {
-
-  componentDidMount = () => {
+state = {
+  username: "",
+  description: ""
+}
+  componentWillMount = () => {
     this.props.getUser(localStorage.getItem("id"));
 }
+
+componentDidUpdate(prevProps, prevState, snapshot) {
+  if (prevProps.specificProperty !== this.props.specificProperty) {
+      this.setState({username: this.props.user.username});
+      this.setState({description: this.props.user.description})
+  }
+}
+
+editProfile = () => {
+  const user = {
+    id: localStorage.getItem("id"),
+    username: this.state.username,
+    description: this.state.description
+  }
+
+  this.props.editUser(user);
+}
+
+handleInputChange = event => {
+  event.preventDefault();
+  this.setState({
+    [event.target.name]: event.target.value
+});
+};
 
   render() {
     return (
@@ -37,23 +64,15 @@ class UserProfile extends React.Component {
                 <CardBody>
                   <Form>
                     <Row>
-                      <Col className="pr-md-1" md="6">
-                        <FormGroup>
-                          <label>E-mail</label>
-                          <Input
-                            defaultValue={this.props.user.email}
-                            placeholder="E-mail"
-                            type="text"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col className="pl-md-1" md="6">
+                      <Col md="12">
                         <FormGroup>
                           <label>Nazwa użytkownika</label>
                           <Input
                             defaultValue={this.props.user.username}
                             placeholder="Nazwa użytkownika"
                             type="text"
+                            name="username"
+                            onChange={event => this.handleInputChange(event)}
                           />
                         </FormGroup>
                       </Col>
@@ -68,6 +87,8 @@ class UserProfile extends React.Component {
                             placeholder="Opis"
                             rows="4"
                             type="textarea"
+                            name="description"
+                            onChange={event => this.handleInputChange(event)}
                           />
                         </FormGroup>
                       </Col>
@@ -75,7 +96,7 @@ class UserProfile extends React.Component {
                   </Form>
                 </CardBody>
                 <CardFooter>
-                  <Button className="btn-fill" color="primary" type="submit">
+                  <Button className="btn-fill" color="primary" type="submit" onClick={this.editProfile}>
                     Edytuj profil
                   </Button>
                 </CardFooter>
@@ -94,6 +115,7 @@ class UserProfile extends React.Component {
                       /><br/>
                       <h5 className="title">{this.props.user.username}</h5>
                     </a>
+                    <h7 className="title">{this.props.user.email}</h7>
                   </div>
                   <div className="card-description">
                     {!this.props.user.description ? <>Miejsce na Twój opis...</> : this.props.user.description}
@@ -110,7 +132,8 @@ class UserProfile extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUser: (userId) => dispatch(userActions.getUser(userId))
+    getUser: (userId) => dispatch(userActions.getUser(userId)),
+    editUser: (user) => dispatch(userActions.editUser(user))
   };
 };
 

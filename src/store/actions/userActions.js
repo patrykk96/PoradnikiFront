@@ -26,11 +26,49 @@ export const getUserStart = () => {
       dispatch(getUserStart());
       axios.get("/user/getUser/" + userId)
         .then(response => {
-          dispatch(getUserSuccess(response.data.successResult.user));
+          dispatch(getUserSuccess(response.data.successResult));
         })
         .catch(error => {
             console.log(error);
           dispatch(getUserFailed(error));
         });
     };
+  };
+
+  export const editUserStart = () => {
+    return {
+      type: types.EDIT_USER_START
+    };
+  };
+  
+  export const editUserSuccess = response => {
+    return {
+      type: types.EDIT_USER_SUCCESS,
+      response: response
+    };
+  };
+  
+  export const editUserFailed = error => {
+    return {
+      type: types.EDIT_USER_FAILED,
+      error: error
+    };
+  };
+  
+  
+  export const editUser = (user) => {
+  return dispatch => {
+    dispatch(editUserStart());
+   
+    axios
+      .patch("/user/editUser/", user)
+      .then(response => {
+          console.log(response);
+        dispatch(editUserSuccess(response.data));
+      })
+      .catch(error => {
+          console.log(error.response);
+        dispatch(editUserFailed(error.response.status));
+      });
+  };
   };
