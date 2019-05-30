@@ -101,6 +101,7 @@ class Dashboard extends React.Component {
                        <DashboardGuides
                         guides={this.props.guides}
                         isAuthenticated={this.props.isAuthenticated}
+                        addGuideReview={this.props.addGuideReview}
                        />
                       </tbody>
                     </Table>
@@ -120,6 +121,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getGames: (userId) => dispatch(gameActions.getGames(userId)),
     getGuides: (userId, gameId) => dispatch(guideActions.getGuides(userId, gameId)),
+    addGuideReview: (review) => dispatch(guideActions.addGuideReview(review)),
     addGameReview: (review) => dispatch(gameActions.addGameReview(review))
   };
 };

@@ -90,10 +90,9 @@ setRating = (value)=>{
             
           <p>
               <small>{this.props.gameName}</small>
-              <small className="float-right">Utworzono: {this.props.username}, 02.03.2019</small>
+              <small className="float-right">Utworzono: {this.props.username}, {this.props.guideDate}</small>
           </p>
           <p className="title">{this.props.guideName}
-            <small className="float-right">Wyświetlenia: 168</small>
               </p>
               <div>
               <Label>
@@ -115,10 +114,9 @@ setRating = (value)=>{
                 </Label>: null}
                   
                 </div>
-            <p className="text-muted">
+            <p className="text">
             {this.props.guideContent}
             </p>
-            <small>Komentarze: 8</small> 
           </td>
           {this.props.showEditOptions ? 
           <>

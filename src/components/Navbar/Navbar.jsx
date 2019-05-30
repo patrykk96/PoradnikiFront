@@ -94,56 +94,10 @@ class AdminNavbar extends React.Component {
             <Collapse navbar isOpen={this.state.collapseOpen}>
               <Nav className="ml-auto" navbar>
                     
-                    <Button color="link"><p className="tim-icons icon-zoom-split" /></Button>
-                      <Input
-                            type="search"
-                            name="search"
-                            id="exampleSearch"
-                            placeholder="Szukaj"
-                            autoComplete="off"
-                          />
-
+                    
 
                    
-                {this.props.isAuthenticated ? <><UncontrolledDropdown nav>
-                  <DropdownToggle
-                    caret
-                    color="default"
-                    data-toggle="dropdown"
-                    nav
-                  >
-                    <div className="notification d-none d-lg-block d-xl-block" />
-                    <i className="tim-icons icon-sound-wave" />
-                    <p className="d-lg-none">Notifications</p>
-                  </DropdownToggle>
-                  <DropdownMenu className="dropdown-navbar" right tag="ul">
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Mike John responded to your email
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        You have 5 more tasks
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Your friend Michael is in town
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Another notification
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Another one
-                      </DropdownItem>
-                    </NavLink>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
+                {this.props.isAuthenticated ? <>
                 
                 <UncontrolledDropdown nav>
                   <DropdownToggle
@@ -157,18 +111,18 @@ class AdminNavbar extends React.Component {
                       <img alt="..." src={require("assets/img/anime3.png")} />
                     </div>
                     <b className="caret d-none d-lg-block d-xl-block" />
-                    <p className="d-lg-none">Log out</p>
+                    <p className="d-lg-none">Wyloguj</p>
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-navbar" right tag="ul">
                     <NavLink tag="li">
-                    <Link to="/admin/user-profile"><DropdownItem className="nav-item">Profile</DropdownItem></Link>
+                    <Link to="/admin/user-profile"><DropdownItem className="nav-item">Profil</DropdownItem></Link>
                     </NavLink>
                     <NavLink tag="li">
-                      <DropdownItem className="nav-item">Settings</DropdownItem>
+                      <Link to= "admin/user-guides"><DropdownItem className="nav-item">Twoje poradniki</DropdownItem></Link>
                     </NavLink>
                     <DropdownItem divider tag="li" />
                     <NavLink tag="li">
-                      <Link to="/logout"><DropdownItem className="nav-item">Log out</DropdownItem></Link>
+                      <Link to="/logout"><DropdownItem className="nav-item">Wyloguj</DropdownItem></Link>
                     </NavLink>
                   </DropdownMenu>
                 </UncontrolledDropdown></> :  <><Link to="/auth/login">

@@ -18,9 +18,11 @@ class DashboardGuides extends React.Component {
           guideContent={guide.content} 
           gameImage={guide.gameImage}
           guideRating={guide.rating}
+          guideDate={guide.created}
           userRating={guide.userRating}
           reviewCount={guide.reviewCount}
           fileSelected={this.fileSelected}
+          addGuideReview={this.props.addGuideReview}
           isAuthenticated={this.props.isAuthenticated}/>
           
         );

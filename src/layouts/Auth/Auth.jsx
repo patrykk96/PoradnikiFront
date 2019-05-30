@@ -101,7 +101,8 @@ class Auth extends React.Component {
                                                               loading={this.props.loading}
                                                               error={this.props.error}
                                                               isAuthenticated={this.props.isAuthenticated}
-                                                              response={this.props.response}/>}/>
+                                                              response={this.props.response}
+                                                              loginFb={this.props.loginFb}/>}/>
                 <Route path="/auth/register"  render={(props) => <Register {...props} register={this.props.register}
                                                               resetErrors={this.props.resetErrors}
                                                               loading={this.props.loading}
@@ -127,7 +128,8 @@ const mapDispatchToProps = dispatch => {
     resetErrors: () => dispatch(actions.resetErrors()),
     resetPassword: email => dispatch(actions.resetPassword(email)),
     register: user => dispatch(actions.register(user)),
-    login: user => dispatch(actions.login(user))
+    login: user => dispatch(actions.login(user)),
+    loginFb: data => dispatch(actions.loginFb(data))
   };
 };
 

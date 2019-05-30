@@ -116,6 +116,24 @@ const resetErrors = ( state ) => {
     });
 }
 
+const loginFbStart = ( state ) => {
+    return updateObject( state, { 
+        error: null, 
+        loading: true});
+}
+
+const loginFbSuccess = ( state, action ) => {
+    return updateObject( state, {
+        token: action.token,
+        error: null, loading: false});
+}
+
+const loginFbFailed = ( state, action ) => {
+    return updateObject( state, {
+        error: action.error,
+        loading: false });
+}
+
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -140,6 +158,10 @@ const authReducer = (state = initialState, action) => {
         case actionTypes.CHANGE_PASSWORD_START: return changePasswordStart(state);
         case actionTypes.CHANGE_PASSWORD_SUCCESS: return changePasswordSuccess(state, action);
         case actionTypes.CHANGE_PASSWORD_FAILED: return changePasswordFailed(state, action);
+
+        case actionTypes.LOGINFB_START: return loginFbStart(state, action);
+        case actionTypes.LOGINFB_SUCCESS: return loginFbSuccess(state, action);
+        case actionTypes.LOGINFB_FAILED: return loginFbFailed(state, action);
 
         case actionTypes.RESET_ERRORS: return resetErrors(state);
 

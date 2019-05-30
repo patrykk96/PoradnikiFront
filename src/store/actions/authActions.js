@@ -223,3 +223,44 @@ export const registerStart = () => {
       type: types.RESET_ERRORS
     };
   };
+
+  export const loginFbStart = () => {
+    return {
+      type: types.LOGINFB_START
+    };
+  };
+  
+  export const loginFbSuccess = token => {
+    return {
+      type: types.LOGINFB_SUCCESS,
+      token: token
+    };
+  };
+  
+  export const loginFbFailed = error => {
+    return {
+      type: types.LOGINFB_FAILED,
+      error: error
+    };
+  };
+  
+  export const loginFb = data => {
+    return dispatch => {
+      dispatch(loginFbStart());
+    
+      axios
+        .post("/auth/facebookLogin", JSON.stringify(data))
+        .then(response => {
+          console.log(response);
+          localStorage.setItem("token", response.data.successResult.token);
+          //localStorage.setItem("username", user.username);
+          localStorage.setItem("id", response.data.successResult.id)
+          dispatch(loginFbSuccess(response.data.successResult.token));
+          //window.location.reload();
+        })
+        .catch(error => {
+          dispatch(loginFbFailed(error.response.data));
+        });
+    };
+  };
+  

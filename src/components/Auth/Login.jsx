@@ -18,9 +18,7 @@ import {
   } from "reactstrap";
 
 
-  const responseFacebook = (response) => {
-    console.log(response);
-  }
+  
 
 class Login extends React.Component {
   constructor(props) {
@@ -48,6 +46,15 @@ class Login extends React.Component {
       [event.target.name]: event.target.value
   });
   };
+  
+  responseFacebook = (response) => {
+    //console.log(response);
+    const data = {
+      accessToken: response.accessToken,
+      id: response.id
+    };
+    this.props.loginFb(data)
+  }
 
   submitLogin = event => {
     const user = {
@@ -127,7 +134,7 @@ class Login extends React.Component {
 
             <FacebookLogin
                 appId="398395234073975"
-                callback={responseFacebook}
+                callback={this.responseFacebook}
                 fields="name,email,picture"
                 render={renderProps => (
                   <Button onClick={renderProps.onClick} className="btn-info btn-icon btn-round" color="facebook">

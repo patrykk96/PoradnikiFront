@@ -7,6 +7,10 @@ export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILED = "LOGIN_FAILED";
 
+export const LOGINFB_START = "LOGINFB_START";
+export const LOGINFB_SUCCESS = "LOGINFB_SUCCESS";
+export const LOGINFB_FAILED = "LOGINFB_FAILED";
+
 export const LOGOUT = "LOGOUT";
 
 export const CONFIRM_ACCOUNT_START = "CONFIRM_ACCOUNT_START";

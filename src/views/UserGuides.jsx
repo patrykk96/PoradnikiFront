@@ -107,7 +107,7 @@ class UserGuides extends React.Component {
                   </CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <div className="table-full-width">
+                  <div className="table-responsive">
                     <Table className="tablesorter">
                       <tbody>
                        <UserGuidesList 

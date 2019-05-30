@@ -25,6 +25,7 @@ class UserGuidesList extends React.Component {
               guideRating={guide.rating}
               userRating={guide.userRating}
               reviewCount={guide.reviewCount}
+              guideDate={guide.created}
               showEditOptions={true}
               fileSelected={this.fileSelected} 
               unableEditGuide={this.props.unableEditGuide}
